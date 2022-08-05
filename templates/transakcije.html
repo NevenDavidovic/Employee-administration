@@ -6,9 +6,28 @@
 
 
 
-
 {% block body %} 
 <h1 align="center">Lista donacija</h1>
-<p>{{ unosi }}</p>
+<p>
+    <table  class="tabla" align="center" >
+        <tr>
+            <td><b>Ime</b></td>
+            <td><b>Prezime</b></td>
+            <td><b>Donacija(u kunama)</b></td>
+        </tr>
+    {% for unos in unosi %}
+            
+        <tr>
+            <td>{{unos[0]}}</td>
+            <td>{{unos[1]}}</td>
+            <td>{{unos[2]}} kn</td>
+
+        </tr>
+    </table>  
+    {% endfor %}
+
+ 
+    
+</p>
 
 {% endblock %}
