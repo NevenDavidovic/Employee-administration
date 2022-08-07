@@ -8,24 +8,29 @@
 
 {% block body %} 
 <h1 align="center">Lista donacija</h1>
-<p>
-    <table  class="tabla" align="center" >
-        <tr>
-            <td><b>Ime</b></td>
-            <td><b>Prezime</b></td>
-            <td><b>Donacija(u kunama)</b></td>
-        </tr>
-    {% for unos in unosi %}
-            
-        <tr>
-            <td>{{unos[0]}}</td>
-            <td>{{unos[1]}}</td>
-            <td>{{unos[2]}} kn</td>
+<p> <table border= "1"   align="center" >
+    <tr  background-color:gray align="center">
+        <td><b>Ime</b></td>
+        <td><b>Prezime</b></td>
+        <td><b>Donacija</b></td>
+    </tr>
+    {% for unos in unosi %} 
+         
+        <tr border= "1" align="center">
+            <td>{{unos.ime}}</td>
+            <td>{{unos.prezime}}</td>
+            <td>{{unos.donacija}} kn</td>
+            <td> <label for="pet-select"> Odaberi radnju:</label>
 
-        </tr>
-    </table>  
+            <td> <a href="/update/{{ unos.id }}"><button class="favorite styled"
+                type="button">
+             Izmijeni
+            </button></a>
+         <a href="/delete/{{unos.id}}"><button class="favorite styled"
+            type="button">Obriši</button></a>
+    </td>
     {% endfor %}
-
+</table> 
  
     
 </p>
