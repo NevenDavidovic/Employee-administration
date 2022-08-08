@@ -66,13 +66,13 @@ def azuriraj(id):
     return render_template('update.html')
 
 @app.route('/delete/<id>', methods=['GET','POST'])
-def brisi():
+def delete(id):
     podaci= Zaposlenik.query.get(id)
     bp.session.delete(podaci)
     bp.session.commit()
-    flash("Uspješno obrisano")
+    
 
-    return redirect(url_for('show_transakcije'))
+    return render_template('transakcije.html')
 
 
 if __name__=="__main__":
