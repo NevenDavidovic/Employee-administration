@@ -17,12 +17,13 @@
     {% for unos in unosi %} 
          
         <tr border= "1" align="center">
+            
             <td>{{unos.ime}}</td>
             <td>{{unos.prezime}}</td>
             <td>{{unos.donacija}} kn</td>
             <td> <label for="pet-select"> Odaberi radnju:</label>
 
-            <td> <a href="/update/{{unos.id }}"><button class="favorite styled"
+            <td> <a href="/update/{{unos.id}}"><button class="favorite styled"
                 type="button">
              Izmijeni
             </button></a>

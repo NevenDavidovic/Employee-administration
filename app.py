@@ -52,18 +52,22 @@ def show_transakcije():
     svi_podaci= Zaposlenik.query.all()
     return render_template("transakcije.html", unosi=svi_podaci)
 
-@app.route('/update/<id>', methods=['GET','POST']) 
-def azuriraj(id):
-    if request.method=="POST":
-        podaci= Zaposlenik.query.get(request.form.get(id))
-        podaci.name= request.form['ime']
-        podaci.prezime= request.form['prezime']
-        podaci.donacija= request.form['donacija']
 
+
+@app.route('/update/<id>', methods=['POST','GET']) 
+def update(id):
+    podac= Zaposlenik.query.get(id)
+    return render_template ("update.html",unos=podac)   
+    
+@app.route('/updated/<id>',methods=['POST','GET'])
+def updated(id):   
+    if request.method=="POST":
+        unos= Zaposlenik.query.get(id)
+        unos.ime=request.form['ime']
+        unos.prezime=request.form['prezime']
+        unos.donacija=request.form['donacija']
         bp.session.commit()
-        flash("Ažuriran zaposlenik")
         return redirect(url_for('show_transakcije'))
-    return render_template('update.html')
 
 @app.route('/delete/<id>', methods=['GET','POST'])
 def delete(id):
@@ -72,7 +76,7 @@ def delete(id):
     bp.session.commit()
     
 
-    return render_template('transakcije.html')
+    return render_template('obrisano.html')
 
 
 if __name__=="__main__":

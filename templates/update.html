@@ -2,24 +2,26 @@
 
 
 
-{% block title %} Home {% endblock %}
+{% block title %} Update {% endblock %}
 
 
 
 
 {% block body %} 
 <h3 class="nas">Izmijeni </h3> <br>
-<div  class="form" background-color: yellow>
-<form action="/azuriraj" method='post'>
+<div  class="form" >
+<form action="/updated/{{unos.id}}" method="post">
    <div class="div1"> <label for="ime" >Ime</label><br>
     <input type="text" name="ime" value="{{unos.ime}}"> <br></div>
 <hr width="25%">
+
     <div class="div2"><label for="prezime" >Prezime</label><br>
-    <input type="text" name="prezime"value="{{ unos.prezime}}><br></div>
+    <input type="text" name="prezime"value="{{unos.prezime}}"><br></div>
    <hr width="25%"> 
+
     
     <div class="div3"> <label for="donacija" class="donacija">Donacija</label><br>
-    <input type="number" name="donacija" value="{{ unos.donacija}}> kn <br></div>
+    <input type="number" name="donacija" value="{{unos.donacija}}"> kn </div> <br>
   <hr width="25%">  
     <div class="div4"></div>
     <input type="submit" cname="donira"></div>
