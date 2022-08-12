@@ -28,7 +28,7 @@ class Zaposlenik(bp.Model):
 
 @app.route('/')
 def Index():
-    return render_template("index.html")
+    return redirect(url_for('doniraj'))
 
 @app.route('/doniraj',methods=['POST','GET'])
 def doniraj():
