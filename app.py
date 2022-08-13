@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, url_for,redirect
-import datetime
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
+
 app=Flask(__name__)
 #Dodavanje baze
 app.secret_key="Tajni kljuc"
@@ -17,12 +18,22 @@ class Zaposlenik(bp.Model):
     id=bp.Column(bp.Integer, primary_key=True)
     ime= bp.Column(bp.String(100),nullable=False)
     prezime=bp.Column(bp.String(100),nullable=False)
-    donacija= bp.Column(bp.Integer,nullable=False)
+    datumrodenja= bp.Column(bp.String(100),nullable=False)
+    spol=bp.Column(bp.String(100),nullable=False)
+    kontakt=bp.Column(bp.String(100),nullable=False)
+    odjel=bp.Column(bp.String(100),nullable=False)
+    titula= bp.Column(bp.String(100),nullable=False)
+    datumzaposlenja=bp.Column(bp.String(100),nullable=False)
 
-    def __init__(self,ime,prezime,donacija):
+    def __init__(self,ime,prezime,datumrodenja,spol, kontakt,odjel,titula,datumzaposlenja):
         self.ime= ime
         self.prezime = prezime
-        self.donacija =donacija
+        self.datumrodenja = datumrodenja
+        self.spol= spol
+        self.kontakt=kontakt
+        self.odjel=odjel
+        self.titula= titula
+        self.datumzaposlenja=datumzaposlenja
 
 
 
@@ -35,9 +46,14 @@ def doniraj():
     if request.method=='POST':
         ime= request.form['ime']
         prezime= request.form['prezime']
-        donacija= request.form['donacija']
+        datumrodenja= request.form['datumrodenja']
+        spol=request.form['spol']
+        kontakt=request.form['kontakt']
+        odjel=request.form['odjel']
+        titula=request.form['titula']
+        datumzaposlenja=request.form['datumzaposlenja']
 
-        podaci=Zaposlenik(ime,prezime,donacija)
+        podaci=Zaposlenik(ime,prezime,datumrodenja,spol,kontakt,odjel,titula,datumzaposlenja)
         bp.session.add(podaci)
         bp.session.commit()
                          
@@ -62,7 +78,13 @@ def updated(id):
         unos= Zaposlenik.query.get(id)
         unos.ime=request.form['ime']
         unos.prezime=request.form['prezime']
-        unos.donacija=request.form['donacija']
+        unos.datumrodenja=request.form['datumrodenja']
+        unos.spol=request.form['spol']
+        unos.kontakt=request.form['kontakt']
+        unos.odjel=request.form['odjel']
+        unos.titula=request.form['titula']
+        unos.datumzaposlenja=request.form['datumzaposlenja']
+
         bp.session.commit()
         return redirect(url_for('show_transakcije'))
 

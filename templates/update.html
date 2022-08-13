@@ -4,29 +4,141 @@
 
 {% block title %} Update {% endblock %}
 
+<!-- CSS only -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
 
 {% block body %} 
-<h3 class="nas">Izmijeni </h3> <br>
-<div  class="form" >
-<form action="/updated/{{unos.id}}" method="post">
-   <div class="div1"> <label for="ime" >Ime</label><br>
-    <input type="text" name="ime" value="{{unos.ime}}"> <br></div>
-<hr width="25%">
+<div class="container">
 
-    <div class="div2"><label for="prezime" >Prezime</label><br>
-    <input type="text" name="prezime"value="{{unos.prezime}}"><br></div>
-   <hr width="25%"> 
+  <form class="well form-horizontal" action="/updated/{{unos.id}}" method="post"  id="contact_form" >
+<fieldset>
 
+<!-- Form Name -->
+<legend>Unos zaposlenika</legend> <br> <hr>
+
+<!-- Text input-->
+
+<div class="form-group">
+<span class="input-group-addon"><i class="fa fa-user" ></i></span>
+<label class="col-md-4 control-label"><b>Ime</b></label>  
+  
+<input  name="ime" placeholder="Ime" class="form-control"  type="text" value="{{unos.ime}}">
+  
+
+</div> <br>
+
+<!-- Text input-->
+
+<div class="form-group">
+<span class="input-group-addon"><b><i class="fa fa-user" ></i> Prezime</b></span>
+<label class="col-md-4 control-label" ></label> 
+  
+
+<input name="prezime" placeholder="Prezime" class="form-control"  type="text" value="{{unos.prezime}}">
+  </div><br>
+
+
+<!-- Text input-->
+
+     <div class="form-group">
+     <span class="input-group-addon"><i class="fa fa-birthday-cake"></i><b> Datum rođenja</b></span>
+<label class="col-md-4 control-label"> </label>  
+
+<input name="datumrodenja" placeholder="Datum roðenja" class="form-control"  type="date" value="{{unos.datumrodenja}}">
+  </div><br>
+
+
+
+<!-- Text input-->
+     
+   <div class="form-group">
+     <span class="input-group-addon"><i class="fa fa-intersex"></i><b> Spol</b></span>
+<label class="col-md-4 control-label"> </label>  
+
+<select name="spol" class="form-control selectpicker" value="{{unos.spol}}">
     
-    <div class="div3"> <label for="donacija" class="donacija">Donacija</label><br>
-    <input type="number" name="donacija" value="{{unos.donacija}}"> kn </div> <br>
-  <hr width="25%">  
-    <div class="div4"></div>
-    <input type="submit" cname="donira"></div>
+    <option>Muško</option>
+    <option >Žensko</option>
+        </select>
+  </div>
+<br>
+<!-- Text input-->
     
+<div class="form-group">
+<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+<label class="col-md-4 control-label"><b>Kontakt</b> </label>  
+
+      
+<input name="kontakt" placeholder="Kontakt" class="form-control" type="text" value="{{unos.kontakt}}">
+  </div><br>
+
+
+<!-- Text input-->
+
+
+<!-- Select Basic -->
+ 
+<div class="form-group"> 
+<span class="input-group-addon"><i class='fa fa-plus-square' style='color: red' ></i></span>
+<label class="col-md-4 control-label">Odjel</label>
+  
+     
+  <select name="odjel" class="form-control selectpicker" value="{{unos.odjel}}">
+    
+    <option>Ortopedija</option>
+    <option>Traumatologija</option>
+    <option >Kirurgija</option>
+        </select>
+</div><br>
+
+
+<!-- Text input-->
+<div class="form-group">
+<span class="input-group-addon"><b><i class="fa fa-file-text" style='color: blue' ></i> Titula</b></span>
+<label class="col-md-4 control-label" ></label> 
+  
+
+<input name="titula" placeholder="Titula" class="form-control"  type="text" value="{{unos.titula}}">
+  </div><br>
+
+<!-- Text input-->
+<div class="form-group">
+<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+<label class="col-md-4 control-label"><b>Datum zaposlenja</b></label>  
+ 
+      
+<input name="datumzaposlenja" placeholder="" class="form-control" type="date" value="{{unos.datumzaposlenja}}">
+  </div><br>
+
+
+<!-- radio checks -->
+
+
+<!-- Text area -->
+
+
+
+<!-- Success message -->
+
+
+<!-- Button -->
+<div class="form-group">
+<label class="col-md-4 control-label"></label>
+<div class="col-md-4">
+  <button type="submit" class="btn btn-warning" >Pošalji <span class="glyphicon glyphicon-send"></span></button>
+</div>
+</div>
+
+</fieldset>
 </form>
+</div>
+   
+</form>
+</div>
 
 
 {% endblock %}
