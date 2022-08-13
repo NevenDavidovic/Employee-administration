@@ -2,12 +2,12 @@
 
 
 
-{% block title %} Home {% endblock %}
+{% block title %} Zaposlenici {% endblock %}
 
 
 
 {% block body %} 
-<h1 align="center">Lista donacija</h1>
+<h1 align="center">Zaposlenici</h1>
 <p> <table border= "1"   align="center" >
     <tr  background-color:gray align="center">
         <td><b>Ime</b></td>
@@ -42,10 +42,12 @@
          <a href="/delete/{{unos.id}}"><button class="favorite styled"
             type="button">Obriši</button></a>
     </td>
+
     {% endfor %}
-</table> 
  
-    
-</p>
+ 
+</table>
+</p>  
+
 
 {% endblock %}
