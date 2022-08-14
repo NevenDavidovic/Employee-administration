@@ -24,8 +24,9 @@ class Zaposlenik(bp.Model):
     odjel=bp.Column(bp.String(100),nullable=False)
     titula= bp.Column(bp.String(100),nullable=False)
     datumzaposlenja=bp.Column(bp.String(100),nullable=False)
+    datumupisa=bp.Column(bp.String(30),nullable=False)
 
-    def __init__(self,ime,prezime,datumrodenja,spol, kontakt,odjel,titula,datumzaposlenja):
+    def __init__(self,ime,prezime,datumrodenja,spol, kontakt,odjel,titula,datumzaposlenja,datumupisa):
         self.ime= ime
         self.prezime = prezime
         self.datumrodenja = datumrodenja
@@ -34,6 +35,7 @@ class Zaposlenik(bp.Model):
         self.odjel=odjel
         self.titula= titula
         self.datumzaposlenja=datumzaposlenja
+        self.datumupisa=datumupisa
 
 
 
@@ -52,8 +54,9 @@ def doniraj():
         odjel=request.form['odjel']
         titula=request.form['titula']
         datumzaposlenja=request.form['datumzaposlenja']
-
-        podaci=Zaposlenik(ime,prezime,datumrodenja,spol,kontakt,odjel,titula,datumzaposlenja)
+        ct = datetime.now()
+        datumupisa=ct
+        podaci=Zaposlenik(ime,prezime,datumrodenja,spol,kontakt,odjel,titula,datumzaposlenja,datumupisa)
         bp.session.add(podaci)
         bp.session.commit()
                          
@@ -84,7 +87,8 @@ def updated(id):
         unos.odjel=request.form['odjel']
         unos.titula=request.form['titula']
         unos.datumzaposlenja=request.form['datumzaposlenja']
-
+        ct = datetime.now()
+        unos.datumupisa=ct 
         bp.session.commit()
         return redirect(url_for('show_transakcije'))
 
