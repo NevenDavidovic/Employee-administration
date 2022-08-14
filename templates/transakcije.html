@@ -6,7 +6,7 @@
     
     <title>Zaposlenici</title>
    <!-- CSS only -->
-   <
+   
 
 <style>
     /* Add a black background color to the top navigation */
@@ -82,13 +82,13 @@
             
             <td>{{unos.ime}}</td>
             <td>{{unos.prezime}}</td>
-            <td>{{unos.datumrodenja}} </td>
+            <td>{{unos.datumrodenja.strftime("%d-%m-%Y")}} </td>
             <td>{{unos.spol}} </td>
             <td>{{unos.kontakt}} </td>
             <td>{{unos.odjel}} </td>
             <td>{{unos.titula}} </td>
-            <td>{{unos.datumzaposlenja}} </td>
-            <td>{{unos.datumupisa}} </td>
+            <td>{{unos.datumzaposlenja.strftime("%d-%m-%Y")}} </td>
+            <td>{{unos.datumupisa.strftime("%d-%m-%Y %H:%M:%S")}} </td>
             
             
             <td> <label for="pet-select"> Odaberi radnju:</label>

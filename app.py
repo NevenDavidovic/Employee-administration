@@ -18,13 +18,13 @@ class Zaposlenik(bp.Model):
     id=bp.Column(bp.Integer, primary_key=True)
     ime= bp.Column(bp.String(100),nullable=False)
     prezime=bp.Column(bp.String(100),nullable=False)
-    datumrodenja= bp.Column(bp.String(100),nullable=False)
+    datumrodenja= bp.Column(bp.Date,nullable=False)
     spol=bp.Column(bp.String(100),nullable=False)
     kontakt=bp.Column(bp.String(100),nullable=False)
     odjel=bp.Column(bp.String(100),nullable=False)
     titula= bp.Column(bp.String(100),nullable=False)
-    datumzaposlenja=bp.Column(bp.String(100),nullable=False)
-    datumupisa=bp.Column(bp.String(30),nullable=False)
+    datumzaposlenja=bp.Column(bp.Date,nullable=False)
+    datumupisa=bp.Column(bp.DateTime)
 
     def __init__(self,ime,prezime,datumrodenja,spol, kontakt,odjel,titula,datumzaposlenja,datumupisa):
         self.ime= ime
@@ -48,12 +48,15 @@ def doniraj():
     if request.method=='POST':
         ime= request.form['ime']
         prezime= request.form['prezime']
-        datumrodenja= request.form['datumrodenja']
+        datumr=request.form['datumrodenja']
+        datumrodenja= datetime.strptime(datumr,'%Y-%m-%d')
         spol=request.form['spol']
         kontakt=request.form['kontakt']
         odjel=request.form['odjel']
         titula=request.form['titula']
-        datumzaposlenja=request.form['datumzaposlenja']
+        datum=request.form['datumzaposlenja']
+        datumzaposlenja=datetime.strptime(datum,'%Y-%m-%d')
+        
         ct = datetime.now()
         datumupisa=ct
         podaci=Zaposlenik(ime,prezime,datumrodenja,spol,kontakt,odjel,titula,datumzaposlenja,datumupisa)
@@ -87,8 +90,7 @@ def updated(id):
         unos.odjel=request.form['odjel']
         unos.titula=request.form['titula']
         unos.datumzaposlenja=request.form['datumzaposlenja']
-        ct = datetime.now()
-        unos.datumupisa=ct 
+         
         bp.session.commit()
         return redirect(url_for('show_transakcije'))
 
