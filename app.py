@@ -84,12 +84,14 @@ def updated(id):
         unos= Zaposlenik.query.get(id)
         unos.ime=request.form['ime']
         unos.prezime=request.form['prezime']
-        unos.datumrodenja=request.form['datumrodenja']
+        datumro=request.form['datumrodenja']
+        unos.datumrodenja=datetime.strptime(datumro,'%Y-%m-%d')
         unos.spol=request.form['spol']
         unos.kontakt=request.form['kontakt']
         unos.odjel=request.form['odjel']
         unos.titula=request.form['titula']
-        unos.datumzaposlenja=request.form['datumzaposlenja']
+        datumzap=request.form['datumzaposlenja']
+        unos.datumzaposlenja=datetime.strptime(datumzap,'%Y-%m-%d')
          
         bp.session.commit()
         return redirect(url_for('show_transakcije'))
@@ -101,7 +103,7 @@ def delete(id):
     bp.session.commit()
     
 
-    return render_template('obrisano.html')
+    return redirect(url_for('show_transakcije'))
 
 
 if __name__=="__main__":
