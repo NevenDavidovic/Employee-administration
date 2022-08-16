@@ -2,40 +2,23 @@ from flask import Flask, render_template, request, url_for,redirect
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
+from bp import bp,Zaposlenik
+from flask import Blueprint
+
+
+
 
 app=Flask(__name__)
+
+
+
 #Dodavanje baze
 app.secret_key="Tajni kljuc"
 
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///zaposlenici.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-bp =SQLAlchemy(app)
-
-
-
-class Zaposlenik(bp.Model):
-    id=bp.Column(bp.Integer, primary_key=True)
-    ime= bp.Column(bp.String(100),nullable=False)
-    prezime=bp.Column(bp.String(100),nullable=False)
-    datumrodenja= bp.Column(bp.Date,nullable=False)
-    spol=bp.Column(bp.String(100),nullable=False)
-    kontakt=bp.Column(bp.String(100),nullable=False)
-    odjel=bp.Column(bp.String(100),nullable=False)
-    titula= bp.Column(bp.String(100),nullable=False)
-    datumzaposlenja=bp.Column(bp.Date,nullable=False)
-    datumupisa=bp.Column(bp.DateTime)
-
-    def __init__(self,ime,prezime,datumrodenja,spol, kontakt,odjel,titula,datumzaposlenja,datumupisa):
-        self.ime= ime
-        self.prezime = prezime
-        self.datumrodenja = datumrodenja
-        self.spol= spol
-        self.kontakt=kontakt
-        self.odjel=odjel
-        self.titula= titula
-        self.datumzaposlenja=datumzaposlenja
-        self.datumupisa=datumupisa
+bp.init_app(app)
 
 
 
@@ -105,6 +88,28 @@ def delete(id):
 
     return redirect(url_for('show_transakcije'))
 
+@app.route('/search', methods=['GET','POST'])
+def search_all():
+    if request.method== "POST":
+       opcija=request.form['opcija']
+       imes=request.form['imes'] 
+       
+       if opcija=="Ime":
+        search_ime=Zaposlenik.query.filter_by(ime=imes).all()
+        return render_template('search.html',unosi=search_ime)
+
+       elif opcija=="Prezime":
+        search_prezime=Zaposlenik.query.filter_by(prezime=imes).all()
+        return render_template('search.html',unosi=search_prezime)
+       elif opcija=="Odjel" :
+        search_odjel=Zaposlenik.query.filter_by(odjel=imes)
+        return render_template('search.html', unosi=search_odjel) 
+  
+    if request.method== "GET": 
+        return render_template('search.html') 
+
+    
+        
 
 if __name__=="__main__":
     app.run(debug=True)

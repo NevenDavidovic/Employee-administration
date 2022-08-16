@@ -19,7 +19,7 @@
 {% block body %} 
 <div class="container">
 
-  <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+  <form class="well form-horizontal" action="/doniraj" method="post"  id="contact_form">
 <fieldset>
 
 <!-- Form Name -->
@@ -31,7 +31,7 @@
 <span class="input-group-addon"><i class="fa fa-user" ></i></span>
 <label class="col-md-4 control-label"><b>Ime</b></label>  
   
-<input  name="ime" placeholder="Ime" class="form-control"  type="text">
+<input  name="ime" placeholder="Ime" class="form-control"  type="text" required>
   
 
 </div> <br>
@@ -43,7 +43,7 @@
 <label class="col-md-4 control-label" ></label> 
   
 
-<input name="prezime" placeholder="Prezime" class="form-control"  type="text">
+<input name="prezime" placeholder="Prezime" class="form-control"  type="text" required>
   </div><br>
 
 
@@ -53,7 +53,7 @@
      <span class="input-group-addon"><i class="fa fa-birthday-cake"></i><b> Datum rođenja</b></span>
 <label class="col-md-4 control-label"> </label>  
 
-<input name="datumrodenja" placeholder="Datum roðenja" class="form-control"  type="date">
+<input name="datumrodenja" placeholder="Datum roðenja" class="form-control"  type="date" required>
   </div><br>
 
 
@@ -78,7 +78,7 @@
 <label class="col-md-4 control-label"><b>Kontakt</b> </label>  
 
       
-<input name="kontakt" placeholder="Kontakt" class="form-control" type="text">
+<input name="kontakt" placeholder="Kontakt" class="form-control" type="text" required>
   </div><br>
 
 
@@ -107,7 +107,7 @@
 <label class="col-md-4 control-label" ></label> 
   
 
-<input name="titula" placeholder="Titula" class="form-control"  type="text">
+<input name="titula" placeholder="Titula" class="form-control"  type="text" required>
   </div><br>
 
 <!-- Text input-->
@@ -116,7 +116,7 @@
 <label class="col-md-4 control-label"><b>Datum zaposlenja</b></label>  
  
       
-<input name="datumzaposlenja" placeholder="" class="form-control" type="date">
+<input name="datumzaposlenja" placeholder="" class="form-control" type="date" required>
   </div><br>
 
 
