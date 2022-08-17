@@ -5,6 +5,7 @@
     
     <title>{% block title %} {% endblock %}</title>
    <!-- CSS only -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -47,16 +48,51 @@
         <a href="{{url_for('search_all')}}">Traži</a>
         <a href="{{url_for('stats')}}">Statistika</a>
       </div>
+      <a href=""></a>  
 
+      <div class="col-xs-10 col-sm-6 col-md-6">
+        <div class="card card-style mb-2">
+            <div class="card-body">
+                <div class="chart-container" style="position: relative;">
+                    <canvas id="income_vs_expense"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+<p width="100">
+    <canvas id="myChart" max-width="100vw" max-height="100vh"></canvas>
+<script>
+const ctx = document.getElementById('income_vs_expense').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Žensko', 'Muško'],
+        datasets: [{
+            label: '# of Votes',
+            data: [{{zenski}}, {{muski}}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+</p>
+    </body>
+    </html>
     
-
-    
-
-   
-    {% block body %} 
-       {% endblock %}
-     
-<a href=""></a>  
-</body>
-</html>
-

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import sqlite3
 from bp import bp,Zaposlenik
 from flask import Blueprint
-
+from sqlalchemy import func
 
 
 
@@ -108,7 +108,14 @@ def search_all():
     if request.method== "GET": 
         return render_template('search.html') 
 
+@app.route('/statistika', methods=['GET','POST'])
+def stats():
     
+    muski=Zaposlenik.query.filter_by(spol="Muško").all()
+    a=len(muski)
+    zensko=Zaposlenik.query.filter_by(spol="Žensko").all()
+    b=len(zensko)
+    return render_template('statistika.html',muski=a, zenski=b)
         
 
 if __name__=="__main__":
