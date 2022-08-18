@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>{% block title %} {% endblock %}</title>
    <!-- CSS only -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -10,6 +10,17 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+    .pieChar{
+        height: 300px;
+        width: 300px;
+        
+    }
+
+    .bar{
+        height: 300px;
+        width: 300px;
+        
+    }
     /* Add a black background color to the top navigation */
     .topnav {
       background-color: #333;
@@ -49,50 +60,53 @@
         <a href="{{url_for('stats')}}">Statistika</a>
       </div>
       <a href=""></a>  
+      <p><h3 >Omjer muških i ženskih zaposlenika</h3></p>
+      <div class="pieChar" align=""center >
+        <canvas id="myChart"></canvas>
+      </div>
 
-      <div class="col-xs-10 col-sm-6 col-md-6">
-        <div class="card card-style mb-2">
-            <div class="card-body">
-                <div class="chart-container" style="position: relative;">
-                    <canvas id="income_vs_expense"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-<p width="100">
-    <canvas id="myChart" max-width="100vw" max-height="100vh"></canvas>
-<script>
-const ctx = document.getElementById('income_vs_expense').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Žensko', 'Muško'],
-        datasets: [{
-            label: '# of Votes',
-            data: [{{zenski}}, {{muski}}],
+      <script>
+        const labels = [
+          'Muško',
+          'Žensko',
+          
+        ];
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'My First dataset',
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
-                
-            ],
-            borderColor: [
+                'rgba(54, 162, 235, 0.2)',],
+
+           borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'
-                
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
-</p>
+                'rgba(54, 162, 235, 1)',],
+            data: [{{muski}}, {{zenski}},],
+          }]
+        };
+      
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {}
+        };
+      </script>
+        <script>
+            const myChart = new Chart(
+              document.getElementById('myChart'),
+              config
+            );
+          </script>
+
+        <hr>
+        <div>
+            <div class="bar">
+        <canvas id="myChart" ></canvas>
+    </div>
+
+</div>    
     </body>
     </html>
     

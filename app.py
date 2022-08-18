@@ -115,7 +115,13 @@ def stats():
     a=len(muski)
     zensko=Zaposlenik.query.filter_by(spol="Žensko").all()
     b=len(zensko)
-    return render_template('statistika.html',muski=a, zenski=b)
+    ortopedija=Zaposlenik.query.filter_by(odjel="Ortopedija").all()
+    o=len(ortopedija)
+    traumato=Zaposlenik.query.filter_by(odjel="Traumatologija").all()
+    t=len(traumato)
+    kirurgija=Zaposlenik.query.filter_by(odjel="Kirurgija").all()
+    k=len(kirurgija)
+    return render_template('statistika.html',muski=a, zenski=b,orto=o,trau=t, kir=k)
         
 
 if __name__=="__main__":
