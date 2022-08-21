@@ -13,9 +13,11 @@
     .pieChar{
         height: 300px;
         width: 300px;
-        
+        align-content: center;
     }
-
+    .drugi{
+      width:400px;
+    }
     .bar{
         height: 300px;
         width: 300px;
@@ -61,10 +63,18 @@
       </div>
       <a href=""></a>  
       <p><h3 >Omjer muških i ženskih zaposlenika</h3></p>
-      <div class="pieChar" align=""center >
+      <div class="pieChar" align="center" >
         <canvas id="myChart"></canvas>
       </div>
-
+      <hr>
+      <div class="drugi" align="center">
+        <p><h3>Zaposlenici po odjelima</h3></p>
+        <canvas id="drugiChart"></canvas>
+      </div>
+      <hr>
+      <h3>Ukupno zaposlenika= {{u}}</h3>
+      <h3>Postotak muških zaposlenika : {{m}} %</h3>
+      <h3>Postotak ženskih zaposlenika: {{z}} %</h3>
       <script>
         const labels = [
           'Muško',
@@ -90,15 +100,62 @@
         const config = {
           type: 'pie',
           data: data,
-          options: {}
+          options: {
+            
+              align: 'center'
+            
+          }
         };
-      </script>
-        <script>
-            const myChart = new Chart(
+
+        const myChart = new Chart(
               document.getElementById('myChart'),
               config
             );
-          </script>
+
+            const data2={
+	labels: ['Ortopedija', 'Traumatologija', 'Kirurgija'],
+        datasets: [{
+            label: 'Zaposlenici po odjelima',
+            data: [{{orto}}, {{trau}}, {{kir}}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+
+};
+
+const config2= {
+type: 'bar',
+   data: data2,
+    options: {
+        sclaes:{
+        	y:{
+          	beginAtZero:true
+          }
+        }
+    }
+};
+
+const drugiChart= new Chart(
+	document.getElementById('drugiChart'),
+  config2
+);
+
+          
+
+
+
+
+      </script>
+       
 
         <hr>
         <div>
@@ -106,7 +163,15 @@
         <canvas id="myChart" ></canvas>
     </div>
 
-</div>    
+
+
+
+
+
+</div> 
+
+
+
     </body>
     </html>
     

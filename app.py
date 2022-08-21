@@ -121,7 +121,13 @@ def stats():
     t=len(traumato)
     kirurgija=Zaposlenik.query.filter_by(odjel="Kirurgija").all()
     k=len(kirurgija)
-    return render_template('statistika.html',muski=a, zenski=b,orto=o,trau=t, kir=k)
+
+    ukupno=o+t+k
+
+    postotakzena= b/ukupno *100
+    postotakmuskaraca=a/ukupno *100
+
+    return render_template('statistika.html',muski=a, zenski=b,orto=o,trau=t, kir=k,u=ukupno,m=postotakmuskaraca,z=postotakzena)
         
 
 if __name__=="__main__":
